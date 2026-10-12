@@ -1,1 +1,1 @@
-# Compteur de Visites (Version Beta)
+# Compteur de Visites
