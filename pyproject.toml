@@ -14,5 +14,6 @@ target-version = "py312"
 [tool.ruff.lint]
 select = ["E", "F", "I", "B", "UP"]
 [tool.pytest.ini_options]
+pythonpath = ["."]
 markers = ["integration: nécessite un Redis réel"]
 addopts = "-m 'not integration'"
