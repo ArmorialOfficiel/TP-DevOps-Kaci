@@ -1,0 +1,9 @@
+# Propriétaires du code : leur revue est requise sur les PR qui touchent ces chemins.
+# Les derniers motifs l'emportent.
+# A = @ArmorialOfficiel (créateur du dépôt), B = @AliKKarapetian
+*              @ArmorialOfficiel @AliKKarapetian
+/.github/      @ArmorialOfficiel
+/infra/        @ArmorialOfficiel
+/app/          @AliKKarapetian
+/monitoring/   @AliKKarapetian
+/docs/         @ArmorialOfficiel @AliKKarapetian
