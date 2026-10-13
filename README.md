@@ -1,5 +1,7 @@
 # Compteur de Visites
 
+[![CI](https://github.com/ArmorialOfficiel/TP-DevOps-Kaci/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/ArmorialOfficiel/TP-DevOps-Kaci/actions/workflows/ci.yml)
+
 API FastAPI qui compte les visites dans Redis et expose des métriques Prometheus.
 Dépôt fil rouge du module « Introduction au DevOps ».
 
