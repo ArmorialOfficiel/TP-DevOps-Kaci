@@ -1,7 +1,10 @@
 # Journal de bord - TP01
 
 ## Q1. Délai de changement
-Le temps écoulé entre mon premier commit et sa fusion sur main a été de quelques heures pour cette première fois. L'étape qui m'a pris le plus de temps a été la configuration initiale (clés SSH) et la résolution du conflit.
+Entre le premier commit et sa fusion sur main, il s'est écoulé environ 10 minutes.
+
+## Ce qui a pris le plus de temps
+La configuration initiale (clés SSH) et la résolution du conflit.
 
 ## Q2. Dépendance à GitHub
 Ce qui fonctionnerait à l'identique sur GitLab ou Gitea : Toutes les commandes `git` natives (commit, switch, rebase, tag, push), l'utilisation de Docker, les tests avec `pytest`, et le formatage avec `pre-commit`.
@@ -107,4 +110,4 @@ GitHub Secret Scanning signale automatiquement les jetons aux fournisseurs parte
 qui peuvent les révoquer (ex. jetons GitHub `ghp_…`, clés AWS, Slack, Stripe, Azure, Google Cloud).
 
 ## Ce qui a pris le plus de temps
-*À compléter.*
+Comprendre Git et son environnement (commit, push, fusion) n'est pas simple. Ce qui nous a pris le plus de temps, c'est la fusion.
