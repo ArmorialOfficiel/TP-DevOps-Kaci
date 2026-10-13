@@ -127,6 +127,13 @@ Comprendre Git et son environnement (commit, push, fusion) n'est pas simple. Ce 
 
 # Journal de bord - TP03
 
+## Rôles
+- A (@ArmorialOfficiel, admin du dépôt) : revue et approbation de chaque PR, ajout des contrôles
+  requis dans le ruleset `main` (seul l'admin peut le modifier).
+- B (@AliKKarapetian) : écriture du workflow par étapes (ci.yml, couverture, matrice, cache),
+  PR du test cassé, badge et journal.
+- Les deux : exécution d'act sur son propre poste.
+
 ## Étape 1 - ci.yml minimal (PR #29)
 Workflow `.github/workflows/ci.yml` déclenché sur `push` (main) et `pull_request`, permissions
 `contents: read`, actions épinglées par tag majeur (`checkout@v5`, `setup-python@v6`) :
@@ -234,3 +241,9 @@ pas d'acteur de bypass. Sans ruleset, le pipeline n'est qu'un avis.
 Gitea Actions : presque rien, le fichier va dans `.gitea/workflows/` (syntaxe compatible).
 GitLab CI : tout le fichier (`.gitlab-ci.yml` avec `stages`, `image: python:3.13`, `script:`,
 `parallel: matrix`, `cache:`, `artifacts:`), mais les mêmes concepts.
+
+## Ce qui a pris le plus de temps
+La mise en place du contrôle requis : il fallait les droits admin pour modifier le ruleset, et
+comprendre qu'avec la matrice les checks s'appellent `test (py3.12)` et `test (py3.13)`, pas `test`.
+Ensuite act : installer la bonne version (0.2.89, pas la dernière), télécharger l'image, et la
+première exécution est lente (plus de 3 minutes) car Python et les hooks sont réinstallés dans le conteneur.
