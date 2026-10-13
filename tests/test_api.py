@@ -21,3 +21,15 @@ def test_metrics_counts_requests(client):
     body = client.get("/metrics").text
     assert 'http_requests_total{method="GET",path="/",status="200"}' in body
     assert "http_request_duration_seconds" in body
+
+
+def test_root_expose_version_header(client):
+    resp = client.get("/")
+    assert resp.headers["X-Visites-Version"] == "0.1.0"
+
+
+def test_reset_remet_compteur_a_zero(client):
+    client.get("/")
+    client.get("/")
+    assert client.post("/reset").json() == {"visites": 0}
+    assert client.get("/").json() == {"visites": 1}
