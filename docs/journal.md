@@ -107,4 +107,4 @@ GitHub Secret Scanning signale automatiquement les jetons aux fournisseurs parte
 qui peuvent les révoquer (ex. jetons GitHub `ghp_…`, clés AWS, Slack, Stripe, Azure, Google Cloud).
 
 ## Ce qui a pris le plus de temps
-*À compléter.*
+Comprendre Git et son environnement (commit, push, fusion) n'est pas simple. Ce qui nous a pris le plus de temps, c'est la fusion.
