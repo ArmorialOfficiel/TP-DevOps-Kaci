@@ -1,0 +1,2 @@
+# Empreintes des faux positifs gitleaks à ignorer (une par ligne, format <commit>:<fichier>:<règle>:<ligne>).
+# Aucune pour l'instant : `gitleaks git .` ne trouve rien dans l'historique (voir docs/journal.md, TP02).
