@@ -1,2 +1,3 @@
 # Empreintes des faux positifs gitleaks à ignorer (une par ligne, format <commit>:<fichier>:<règle>:<ligne>).
-# Aucune pour l'instant : `gitleaks git .` ne trouve rien dans l'historique (voir docs/journal.md, TP02).
+# Faux jeton simulé (PR #27), supprimé et rotation documentée dans docs/journal.md (TP02, étape 5).
+091a0dffb2782a7ab2d563c4657d76af39bad051:app/old_settings.py:generic-api-key:2

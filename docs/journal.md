@@ -79,12 +79,25 @@ avec la même valeur, le commit passe : la règle `generic-api-key` exige un mot
 que si elle a un format reconnaissable (ex. `AKIA…` pour un identifiant AWS, `ghp_…` pour GitHub).
 
 ## Étape 5 - Secret historique
-`gitleaks git --verbose --redact .` sur tout l'historique : **no leaks found** (14 commits).
-Notre dépôt n'a pas été créé depuis le dépôt modèle (`--template`) : le fichier
-`app/old_settings.py` contenant le faux jeton du formateur n'est donc pas dans notre historique.
-*À compléter si le formateur fournit le dépôt modèle : commit, auteur, date, fichier.*
+Notre dépôt n'a pas été créé depuis le dépôt modèle (`--template`) : le faux jeton du formateur
+n'y était pas (`gitleaks git .` : no leaks found sur 14 commits). Nous avons donc **simulé le scénario** :
+un faux jeton `API_TOKEN` dans `app/old_settings.py`, commité en contournant le hook
+(`SKIP=gitleaks git commit`, comme un collègue sans pre-commit) puis fusionné sur main (PR #27).
 
-Rapport : `docs/gitleaks.json` (vide, code de retour 0). `.gitleaksignore` est en place, sans empreinte.
+`gitleaks git --verbose --redact .` sur tout l'historique (26 commits) : **1 fuite trouvée**.
+
+| Champ    | Valeur |
+|----------|--------|
+| Commit   | `091a0dffb2782a7ab2d563c4657d76af39bad051` (PR #27) |
+| Auteur   | Alik Karapetian |
+| Date     | 2026-10-13 09:05:41 UTC |
+| Fichier  | `app/old_settings.py`, ligne 2 |
+| Règle    | `generic-api-key` (entropie 4.86) |
+
+Le fichier est supprimé (PR de rotation) et l'empreinte du commit historique est ajoutée à
+`.gitleaksignore` : `gitleaks git . --report-path docs/gitleaks.json` renvoie le code 0.
+Nous n'avons pas réécrit l'historique (`git filter-repo`) : le jeton est faux, et réécrire `main`
+obligerait les deux membres à recloner ; la rotation suffit.
 
 **Rotation :** un secret poussé sur une forge doit être considéré comme compromis, qu'on réécrive
 l'historique ou non (des clones et des robots l'ont peut-être déjà récupéré). Avec un vrai jeton,
