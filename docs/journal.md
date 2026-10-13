@@ -21,8 +21,19 @@ Ruleset « main » (versionné dans `.github/rulesets/main.json`) : suppression 
 PR obligatoire avec 1 approbation, « dismiss stale approvals », revue des Code Owners,
 historique linéaire, commits signés, fusion par squash uniquement. Le contrôle requis « test » sera ajouté au TP03.
 
-Tests de refus : *à compléter après activation du ruleset (message GH013 du push direct,
-PR « Unverified » non fusionnable).*
+Tests de refus (ruleset actif) :
+
+- **Push direct sur `main`** (commit `chore: test de protection`) : refusé par le serveur.
+  ```
+  remote: error: GH013: Repository rule violations found for refs/heads/main.
+  remote: - Changes must be made through a pull request.
+   ! [remote rejected] main -> main (push declined due to repository rule violations)
+  ```
+  Le commit local a ensuite été annulé.
+- **Commit non signé dans une PR** (`git -c commit.gpgsign=false commit --allow-empty`, PR #24) :
+  le bouton « Squash and merge » est grisé, GitHub affiche « Merging is blocked » avec
+  « At least 1 approving review is required » et « Commits must have verified signatures ».
+  La PR a été fermée et la branche `test/non-signe` supprimée.
 
 **Pourquoi « dismiss stale approvals » ?** Une approbation porte sur un diff précis. Sans cette option,
 on peut faire approuver une PR anodine puis pousser un nouveau commit (bug, porte dérobée, secret)
